@@ -1,0 +1,30 @@
+---
+interface Props {
+  path: string;
+}
+
+const { path } = Astro.props;
+
+const pathname = Astro.url.pathname;
+---
+
+<li>
+  <a href={path} class={`link ${pathname === path ? "active" : ""}`}>
+    <div class="w-[28px] fill-darkgrey">
+      <slot />
+    </div>
+  </a>
+</li>
+
+<style lang="scss">
+  .link {
+    display: flex;
+    padding: 10px;
+    border-radius: 9px;
+
+    &:hover,
+    &.active {
+      background: white;
+    }
+  }
+</style>

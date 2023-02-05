@@ -1,0 +1,15 @@
+---
+import HomeIcon from "@mui/icons-material/Home";
+import PieChartIcon from "@mui/icons-material/PieChart";
+
+import SidebarItem from "./SidebarItem.astro";
+---
+
+<aside class="h-screen w-fit px-4 flex items-center w-darkgrey bg-grey">
+  <nav>
+    <ul class="flex flex-col gap-3">
+      <SidebarItem path="/"><HomeIcon /></SidebarItem>
+      <SidebarItem path="/analytics"><PieChartIcon /></SidebarItem>
+    </ul>
+  </nav>
+</aside>

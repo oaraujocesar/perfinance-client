@@ -1,5 +1,8 @@
 ---
-import '@fontsource/source-sans-pro';
+import Sidebar from "@components/Sidebar/Sidebar.astro";
+import "@fontsource/source-sans-pro";
+import "normalize.css";
+import "../global/styles.css";
 
 export interface Props {
   title: string;
@@ -18,7 +21,8 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <main>
+    <main class="grid grid-cols-layout bg-white">
+      <Sidebar />
       <slot />
     </main>
   </body>
