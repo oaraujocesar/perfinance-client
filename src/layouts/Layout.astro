@@ -1,4 +1,6 @@
 ---
+import '@fontsource/source-sans-pro';
+
 export interface Props {
   title: string;
 }
@@ -23,7 +25,7 @@ const { title } = Astro.props;
 </html>
 <style is:global>
   html {
-    font-family: system-ui, sans-serif;
+    font-family: source-sans-pro, sans-serif;
     background-color: #f6f6f6;
   }
 </style>
