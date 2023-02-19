@@ -1,0 +1,29 @@
+@import "./_colors.scss";
+
+@function toRem($size) {
+  @return $size/16 + rem;
+}
+
+@mixin title() {
+  font-size: toRem(27);
+  line-height: 1.5;
+  color: $title;
+}
+
+@mixin body-1($color) {
+  font-size: toRem(16);
+  line-height: 1.5;
+  color: $color;
+}
+
+@mixin body-2($color) {
+  font-size: toRem(13);
+  line-height: 1.5;
+  color: $color;
+}
+
+@mixin caption($color) {
+  font-size: toRem(10);
+  line-height: 1.5;
+  color: $color;
+}
