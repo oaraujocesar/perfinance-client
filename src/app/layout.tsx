@@ -1,5 +1,9 @@
+"use client";
+
 import "@globals/styles/reset.css";
 import "@globals/styles/globals.css";
+import ThemeProvider from "@mui/material/styles/ThemeProvider";
+import { theme } from "@globals/styles/theme";
 
 export default function RootLayout({
   children,
@@ -7,9 +11,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head />
-      <body>{children}</body>
-    </html>
+    <ThemeProvider theme={theme}>
+      <html lang="en">
+        <head />
+        <body>{children}</body>
+      </html>
+    </ThemeProvider>
   );
 }
