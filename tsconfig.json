@@ -21,7 +21,8 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@atoms/*": ["./app/components/atoms/*"]
+      "@components/*": ["./src/components/*"],
+      "@globals/*": ["./src/globals/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
