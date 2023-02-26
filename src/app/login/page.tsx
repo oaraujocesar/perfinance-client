@@ -7,11 +7,13 @@ import { Button } from "@components/Button/Button";
 import { Textfield } from "@components/Textfield/TextField";
 import { schema } from "./login.validation";
 import { useSnackbar } from "notistack";
-import { Typography } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { Link } from "@components/Link/Link";
 import { SignupLink, Subtitle, Title } from "./login.styles";
+import { Logo } from "@components/Logo/Logo";
 
 export default function Login() {
+  const { palette } = useTheme();
   const {
     register,
     handleSubmit,
@@ -26,8 +28,11 @@ export default function Login() {
   };
 
   return (
-    <main className="w-screen h-screen">
+    <main className="w-screen h-screen pt-[5%]">
       <form className="w-[500px] mx-auto" onSubmit={handleSubmit(onSubmit)}>
+        <Box m="0 auto 10px auto" display="flex" justifyContent="center">
+          <Logo sx={{ fontSize: "4rem", color: palette.primary.main }} />
+        </Box>
         <Title variant="h1">Bem-vinda ao Perfinance!</Title>
         <Subtitle variant="body2">
           Insira suas credenciais para começar
@@ -35,7 +40,7 @@ export default function Login() {
         <Textfield
           label="E-mail"
           type="email"
-          placeholder="email@example.com"
+          placeholder="email@exemplo.com"
           errorMsg={errors.email?.message?.toString()}
           {...register("email", { required: true })}
         />

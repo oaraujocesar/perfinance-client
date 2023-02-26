@@ -4,7 +4,6 @@ export const Form = styled("form")(({ theme }) => ({}));
 export const Title = styled(Typography)(({ theme }) => ({
   fontSize: "2rem",
   textAlign: "center",
-  paddingTop: "25%",
   fontWeight: 700,
   color: theme.palette.primary.main,
 }));
