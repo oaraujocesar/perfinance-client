@@ -6,6 +6,7 @@ import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import "@globals/styles/reset.css";
 import "@globals/styles/globals.css";
 import { theme } from "@globals/styles/theme";
+import { SnackbarProvider } from "notistack";
 
 const googleSans = localFont({
   src: [
@@ -41,7 +42,15 @@ export default function RootLayout({
     <ThemeProvider theme={theme}>
       <html lang="en">
         <head />
-        <body className={googleSans.className}>{children}</body>
+        <body className={googleSans.className}>
+          <SnackbarProvider
+            anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
+            autoHideDuration={3000}
+            preventDuplicate={true}
+          >
+            {children}
+          </SnackbarProvider>
+        </body>
       </html>
     </ThemeProvider>
   );
