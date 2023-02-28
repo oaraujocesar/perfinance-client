@@ -15,7 +15,7 @@ import { api } from "src/api/api";
 import { useCallback } from "react";
 import { AxiosError } from "axios";
 
-export default function Login() {
+export default function Signin() {
   const { palette } = useTheme();
   const {
     register,

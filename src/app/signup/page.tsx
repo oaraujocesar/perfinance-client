@@ -15,7 +15,7 @@ import { schema, SignupData } from "./signup.validation";
 import { SignupLink, Subtitle, Title } from "./signup.styles";
 import { api } from "src/api/api";
 
-export default function Login() {
+export default function Signup() {
   const { palette } = useTheme();
   const {
     register,
