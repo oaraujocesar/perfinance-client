@@ -11,6 +11,8 @@ import { Box, Typography, useTheme } from "@mui/material";
 import { Link } from "@components/Link/Link";
 import { SignupLink, Subtitle, Title } from "./login.styles";
 import { Logo } from "@components/Logo/Logo";
+import { api } from "src/api/api";
+import { useCallback } from "react";
 
 export default function Login() {
   const { palette } = useTheme();
@@ -22,10 +24,22 @@ export default function Login() {
 
   const { enqueueSnackbar } = useSnackbar();
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-    enqueueSnackbar("Login realizado com sucesso!", { variant: "success" });
-  };
+  const onSubmit = useCallback(
+    async (data: any) => {
+      try {
+        await api.post("/signin", data);
+        console.log(data);
+        enqueueSnackbar("Login realizado com sucesso!", { variant: "success" });
+
+        return;
+      } catch (e) {
+        enqueueSnackbar("Erro ao realizar login!", { variant: "error" });
+
+        return;
+      }
+    },
+    [enqueueSnackbar]
+  );
 
   return (
     <main className="w-screen h-screen pt-[5%]">
@@ -39,7 +53,6 @@ export default function Login() {
         </Subtitle>
         <Textfield
           label="E-mail"
-          type="email"
           placeholder="email@exemplo.com"
           errorMsg={errors.email?.message?.toString()}
           {...register("email", { required: true })}
