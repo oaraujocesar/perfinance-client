@@ -10,6 +10,7 @@ export const Input = styled("input")(({ theme }) => ({
   background: theme.palette.grey[100],
   padding: "12px 10px",
   color: theme.palette.text.primary,
+  borderRadius: "4px",
 }));
 
 export const Error = styled("p")(({ theme }) => ({
