@@ -1,19 +1,19 @@
 "use client";
 
+import { useCallback } from "react";
+import { AxiosError } from "axios";
+import { useSnackbar } from "notistack";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Button } from "@components/Button/Button";
 import { Textfield } from "@components/Textfield/TextField";
-import { schema } from "./signin.validation";
-import { useSnackbar } from "notistack";
 import { Box, useTheme } from "@mui/material";
 import { Link } from "@components/Link/Link";
-import { SignupLink, Subtitle, Title } from "./signin.styles";
 import { Logo } from "@components/Logo/Logo";
+import { schema } from "./signup.validation";
+import { SignupLink, Subtitle, Title } from "./signup.styles";
 import { api } from "src/api/api";
-import { useCallback } from "react";
-import { AxiosError } from "axios";
 
 export default function Login() {
   const { palette } = useTheme();
@@ -28,9 +28,17 @@ export default function Login() {
   const onSubmit = useCallback(
     async (data: any) => {
       try {
-        await api.post("/signin", data);
+        await api.post("/signup", data);
         console.log(data);
-        enqueueSnackbar("Login realizado com sucesso!", { variant: "success" });
+        enqueueSnackbar(
+          "Usuário cadastrado! Você será redirecionado para a tela de login",
+          {
+            variant: "success",
+            onClose: () => {
+              window.location.href = "/signin";
+            },
+          }
+        );
 
         return;
       } catch (e) {
@@ -52,13 +60,23 @@ export default function Login() {
         <Box m="0 auto 10px auto" display="flex" justifyContent="center">
           <Logo sx={{ fontSize: "4rem", color: palette.primary.main }} />
         </Box>
-        <Title variant="h1">Bem-vinda ao Perfinance!</Title>
-        <Subtitle variant="body2">
-          Insira suas credenciais para começar
-        </Subtitle>
+        <Title variant="h1">Cadastro</Title>
+        <Subtitle variant="body2">Preencha as informações abaixo.</Subtitle>
+        <Textfield
+          label="Nome"
+          placeholder="Digite o seu nome"
+          errorMsg={errors.firstName?.message?.toString()}
+          {...register("firstName", { required: true })}
+        />
+        <Textfield
+          label="Sobrenome"
+          placeholder="Digite o seu sobrenome"
+          errorMsg={errors.lastName?.message?.toString()}
+          {...register("lastName", { required: true })}
+        />
         <Textfield
           label="E-mail"
-          placeholder="email@exemplo.com"
+          placeholder="Digite o seu melhor e-mail"
           errorMsg={errors.email?.message?.toString()}
           {...register("email", { required: true })}
         />
@@ -69,9 +87,9 @@ export default function Login() {
           errorMsg={errors.password?.message?.toString()}
           {...register("password", { required: true, minLength: 8 })}
         />
-        <Button label="Entrar" />
+        <Button label="Cadastrar" />
         <SignupLink variant="caption">
-          Ainda não tem conta? <Link href="/signup">Cadastre-se!</Link>
+          Já tem conta? <Link href="/signin">Entrar!</Link>
         </SignupLink>
       </form>
     </main>
