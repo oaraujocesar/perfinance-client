@@ -22,3 +22,11 @@ export const schema = yup
       ),
   })
   .required();
+
+export interface SignupData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  avatar?: string;
+}

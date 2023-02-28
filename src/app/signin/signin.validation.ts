@@ -12,3 +12,8 @@ export const schema = yup
       .min(8, "A senha deve conter no mínimo 8 caracteres"),
   })
   .required();
+
+export interface SigninData {
+  email: string;
+  password: string;
+}

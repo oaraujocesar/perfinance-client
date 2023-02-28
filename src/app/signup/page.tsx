@@ -11,7 +11,7 @@ import { Textfield } from "@components/Textfield/TextField";
 import { Box, useTheme } from "@mui/material";
 import { Link } from "@components/Link/Link";
 import { Logo } from "@components/Logo/Logo";
-import { schema } from "./signup.validation";
+import { schema, SignupData } from "./signup.validation";
 import { SignupLink, Subtitle, Title } from "./signup.styles";
 import { api } from "src/api/api";
 
@@ -21,15 +21,14 @@ export default function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm<SignupData>({ resolver: yupResolver(schema) });
 
   const { enqueueSnackbar } = useSnackbar();
 
   const onSubmit = useCallback(
-    async (data: any) => {
+    async (data: SignupData) => {
       try {
         await api.post("/signup", data);
-        console.log(data);
         enqueueSnackbar(
           "Usuário cadastrado! Você será redirecionado para a tela de login",
           {

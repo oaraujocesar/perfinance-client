@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Button } from "@components/Button/Button";
 import { Textfield } from "@components/Textfield/TextField";
-import { schema } from "./signin.validation";
+import { schema, SigninData } from "./signin.validation";
 import { useSnackbar } from "notistack";
 import { Box, useTheme } from "@mui/material";
 import { Link } from "@components/Link/Link";
@@ -21,15 +21,14 @@ export default function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm<SigninData>({ resolver: yupResolver(schema) });
 
   const { enqueueSnackbar } = useSnackbar();
 
   const onSubmit = useCallback(
-    async (data: any) => {
+    async (data: SigninData) => {
       try {
         await api.post("/signin", data);
-        console.log(data);
         enqueueSnackbar("Login realizado com sucesso!", { variant: "success" });
 
         return;
