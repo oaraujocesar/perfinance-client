@@ -7,6 +7,7 @@ module.exports = {
       secondary: "#f9896b",
       bgblue: "#f5f9fd",
       darkText: "#5b5b5b",
+      error: "#f44336",
     },
     extend: {},
   },
